@@ -1,0 +1,73 @@
+
+    
+    <p-panel header="Fund Manager Maintenance">
+
+        <div class="card flex flex-column md:flex-row gap-3">
+            
+                <p-dropdown 
+                    [options]="cities" 
+                    [(ngModel)]="selectedCity" 
+                    optionLabel="name"
+                    placeholder="Select a Constraint" />
+            <p-inputGroup>
+                <input type="text" pInputText placeholder="Keyword" />
+                <button type="button" pButton icon="pi pi-search" class="p-button-primary"></button>
+            </p-inputGroup>
+
+        </div>
+
+
+<div class="card">
+    <p-table
+        [value]="tableData"
+        styleClass="p-datatable-striped" 
+        [paginator]="true"
+        [rows]="10"
+        [first]="first"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        sortMode="multiple"
+        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        
+    >
+<!-- 
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <p-iconField iconPosition="left" class="ml-auto">
+                <p-inputIcon>
+                    <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input 
+                    pInputText 
+                    type="text" 
+                    (input)="dt2.filterGlobal($event.target.value, 'contains')" 
+                    placeholder="Search keyword" />
+            </p-iconField>
+        </div>
+    </ng-template> -->
+
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="name" style="width:20%" style="width:25%"> Fund Manager <p-sortIcon field="name" /></th>
+                <th pSortableColumn="country" style="width:20%" style="width:25%"> Fund Manager Name <p-sortIcon field="country" /></th>
+                <th pSortableColumn="company" style="width:20%" style="width:25%"> Class <p-sortIcon field="company" /></th>
+                <th pSortableColumn="representative" style="width:20%" style="width:25%"> Compensation Rate <p-sortIcon field="representative" /></th>
+                <!-- <th pSortableColumn="useractions" style="width:20%" style="width:25%"> User Actions<p-sortIcon field="useractions" /></th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td>{{ rowData.name }}</td>
+                <td>{{ rowData.country }}</td>
+                <td>{{ rowData.company }}</td>
+                <td>{{ rowData.representative }}</td>
+                <!-- <td>{{ rowData.representative }}</td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+</p-panel>
